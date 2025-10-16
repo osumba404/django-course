@@ -5,7 +5,25 @@ Posts List
 {% endblock %}
 
 {% block content %}
- <h1>Posts List</h1>
+<h1>Posts List</h1>
+
+    <section>
+    <ul>
+        {% for post in posts %}
+            <article class="post">
+                    <h2>
+                        <a href="{% url 'posts:page' slug=post.slug %}">
+                        {{ post.title }}
+                        </a>
+                </h2>
+                <p>{{ post.body }}</p>
+                <small>Posted on: {{ post.created_at }}</small>
+            </article>
+            {% empty %}
+                <li>No posts available.</li>
+        {% endfor %}
+
+    </section>
    
 {% endblock %}
 
